@@ -31,3 +31,13 @@
 - [x] Remove all visible sign-in, sign-up, and login controls from the dashboard
 - [x] Make the public dashboard and scenario interaction guest-accessible without authentication prompts
 - [x] Verify the guest experience with tests and a responsive preview
+
+- [x] Verify automated typecheck and Vitest suite for the current guest-access build
+- [x] Verify guest scenario simulation, history, and comparison backend flows
+- [x] Inspect desktop and mobile UI for layout or visible login remnants
+- [x] Inspect Google Maps load/fallback behavior and browser runtime logs
+
+- [x] Review fresh desktop and mobile screenshots: no sign-in/sign-up/login remnants are visible; sidebar, KPI cards, risk monitor, charts, Scenario Lab, and history stack correctly on mobile and form a two-column operational layout on desktop
+- [ ] Resolve Google Maps script/API loading so the live map renders instead of the current retry fallback
+
+- [x] Create a comprehensive README.md with project overview, features, architecture, setup, Codespaces commands, environment variables, database, testing, build, deployment, and troubleshooting
