@@ -1,0 +1,22 @@
+CREATE TABLE `scenarios` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`userId` int NOT NULL,
+	`name` varchar(160) NOT NULL,
+	`attendance` int NOT NULL,
+	`startTime` varchar(16) NOT NULL,
+	`weather` varchar(80) NOT NULL,
+	`temperatureF` int NOT NULL,
+	`humidity` int NOT NULL,
+	`crowdDensity` int NOT NULL,
+	`heatIndex` int NOT NULL,
+	`trafficCongestion` int NOT NULL,
+	`riskLevel` enum('green','yellow','red') NOT NULL,
+	`heatRisk` enum('green','yellow','red') NOT NULL,
+	`trafficRisk` enum('green','yellow','red') NOT NULL,
+	`crowdRisk` enum('green','yellow','red') NOT NULL,
+	`carbonSavedTons` int NOT NULL,
+	`minutesSaved` int NOT NULL,
+	`recommendations` text NOT NULL,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	CONSTRAINT `scenarios_id` PRIMARY KEY(`id`)
+);
