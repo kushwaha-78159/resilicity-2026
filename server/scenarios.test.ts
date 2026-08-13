@@ -17,11 +17,14 @@ const context = (currentUser: AuthenticatedUser | null = user): TrpcContext => (
 const input = { name: "Kickoff heat plan", attendance: 80000, startTime: "18:00", weather: "Hot & humid" as const, temperatureF: 94, humidity: 72 };
 
 describe("scenario router contracts", () => {
-  it("protects all scenario procedures from unauthenticated access", async () => {
+  it("allows guest planners to use the public scenario workspace", async () => {
+    dbMocks.listScenarios.mockResolvedValue([]);
+    dbMocks.compareScenarios.mockResolvedValue([]);
+    dbMocks.createScenario.mockResolvedValue({ id: 0, userId: 0, ...input, riskLevel: "red", recommendations: "[]" });
     const caller = appRouter.createCaller(context(null));
-    await expect(caller.scenarios.list()).rejects.toMatchObject({ code: "UNAUTHORIZED" });
-    await expect(caller.scenarios.compare({ ids: [1] })).rejects.toMatchObject({ code: "UNAUTHORIZED" });
-    await expect(caller.scenarios.simulateAndSave(input)).rejects.toMatchObject({ code: "UNAUTHORIZED" });
+    await expect(caller.scenarios.list()).resolves.toEqual([]);
+    await expect(caller.scenarios.compare({ ids: [1] })).resolves.toEqual([]);
+    await expect(caller.scenarios.simulateAndSave(input)).resolves.toMatchObject({ scenario: { userId: 0 } });
   });
 
   it("persists a calculated scenario with timestamps, outcomes, and serialized recommendations", async () => {

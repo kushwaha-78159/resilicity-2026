@@ -76,13 +76,13 @@ export const appRouter = router({
     })),
   }),
   scenarios: router({
-    simulateAndSave: protectedProcedure.input(scenarioInput).mutation(async ({ ctx, input }) => {
+    simulateAndSave: publicProcedure.input(scenarioInput).mutation(async ({ ctx, input }) => {
       const outcome = calculateScenario(input);
-      const scenario = await createScenario({ ...input, userId: ctx.user.id, ...outcome, recommendations: JSON.stringify(outcome.recommendations) });
+      const scenario = await createScenario({ ...input, userId: ctx.user?.id ?? 0, ...outcome, recommendations: JSON.stringify(outcome.recommendations) });
       return { scenario, outcome };
     }),
-    list: protectedProcedure.query(({ ctx }) => listScenarios(ctx.user.id)),
-    compare: protectedProcedure.input(z.object({ ids: z.array(z.number().int()).min(1).max(3) })).query(({ ctx, input }) => compareScenarios(ctx.user.id, input.ids)),
+    list: publicProcedure.query(({ ctx }) => listScenarios(ctx.user?.id ?? 0)),
+    compare: publicProcedure.input(z.object({ ids: z.array(z.number().int()).min(1).max(3) })).query(({ ctx, input }) => compareScenarios(ctx.user?.id ?? 0, input.ids)),
   }),
 });
 

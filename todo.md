@@ -27,3 +27,7 @@
 - [x] Create actual protected routes/pages for scenario lab/history or clearly gate those routes behind auth
 - [x] Add Vitest coverage for scenario persistence/list/compare contracts, including auth protection
 - [x] Capture and review mobile screenshots to verify responsive behavior
+
+- [x] Remove all visible sign-in, sign-up, and login controls from the dashboard
+- [x] Make the public dashboard and scenario interaction guest-accessible without authentication prompts
+- [x] Verify the guest experience with tests and a responsive preview
