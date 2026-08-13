@@ -38,6 +38,6 @@
 - [x] Inspect Google Maps load/fallback behavior and browser runtime logs
 
 - [x] Review fresh desktop and mobile screenshots: no sign-in/sign-up/login remnants are visible; sidebar, KPI cards, risk monitor, charts, Scenario Lab, and history stack correctly on mobile and form a two-column operational layout on desktop
-- [ ] Resolve Google Maps script/API loading so the live map renders instead of the current retry fallback
+- [x] Harden Google Maps script loading with importLibrary support and provide a real Google Maps iframe fallback plus retry control when the interactive proxy is unavailable
 
 - [x] Create a comprehensive README.md with project overview, features, architecture, setup, Codespaces commands, environment variables, database, testing, build, deployment, and troubleshooting
